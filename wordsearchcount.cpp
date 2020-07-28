@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 
-// ADD ANY HEADER FILES YOU NEED
+// HEADER FILES
 #include "dnode.h"
 #include "bag.h"
 #include "word.h"
@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
     while(true){ 
       fin>>word;
       if(fin.eof()) {cout << "EOF " << files[i] << endl; break;}
-      // Insert a single C++ statement below to print "<filename>::<word>".
+      // To just print "<filename>::<word>".
       // cout << files[i] << "::" << word << endl; 
       to_lower(word);
       cont.insert_word(word, files[i]);
@@ -86,7 +86,6 @@ int main(int argc, char* argv[])
     fin.close(); 
   }
 
-  //cout << "This is the next part of the program that you will exercise in the next project." << endl;
   //cont.print_words();
 
   cout<<"Enter word: ";
@@ -103,11 +102,6 @@ int main(int argc, char* argv[])
   // variable "word" and input threshold is stored in
   // variable "t"
 
-  // ADD CODE HERE TO INVOKE MEMBER FUNCTIONS OF
-  // BAG OBJECT CREATED AT LINE 46 FOR PRINTING
-  // FILENAMES THAT CONTAINS THE GIVEN WORD
-  // ATLEAST THE GIVEN AMOUNT OF TIMES
-
   dnode<Word>* wordPtr = cont.getListPtr();
 
   while(wordPtr) {
@@ -119,6 +113,9 @@ int main(int argc, char* argv[])
 
   if(wordPtr) {
     dnode<File>* filesList = wordPtr->getData().getListPtr();
+
+      cout << "The word \'" << word << "\' appears " << thresh << " times in the following files in the directory: " << endl;
+
     while(filesList) {
       File curFile = filesList->getData();
       if(curFile.getFileCount() >= t) {
@@ -126,10 +123,9 @@ int main(int argc, char* argv[])
       } 
       filesList = filesList->getNext();
     }
+  }else {
+      cout << "The word \'" << word << "\' does not appear in any file in the directory." << endl;
   }
-
-  // YOU MAY ADD CODE HERE IF NEEDED TO
-  // CLEAR ANY DYNAMICALLY ALLOCATED SPACES
   return 0;
 }
 

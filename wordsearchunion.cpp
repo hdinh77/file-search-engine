@@ -10,7 +10,7 @@
 #include <fstream>
 #include<string>
 
-// ADD ANY HEADER FILES YOU NEED
+// HEADER FILES
 #include "dnode.h"
 #include "bag.h"
 #include "word.h"
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
     while(true){
       fin>>word;
       if(fin.eof()) {cout << "EOF " << files[i] << endl; break;}
-      // Insert a single C++ statement below to print "<filename>::<word>".
+      // To print "<filename>::<word>".
       // cout << files[i] << "::" << word << endl;
       to_lower(word);
       cont.insert_word(word,files[i]);
@@ -89,7 +89,6 @@ int main(int argc, char* argv[])
     fin.close();
   }
 
-  //cout << "This is the next part of the program that you will exercise in the next project." << endl;
   //cont.print_words();
 
   cout<<"Enter word1: ";
@@ -102,11 +101,6 @@ int main(int argc, char* argv[])
 
   // at this point, the input words are stored in the
   // variables "word1" and "word2"
-
-  // ADD CODE HERE TO INVOKE MEMBER FUNCTIONS OF
-  // BAG OBJECT CREATED AT LINE 46 FOR PRINTING
-  // FILENAMES THAT CONTAINS EITHER OR BOTH OF
-  // THE GIVEN WORDS
 
   dnode<Word>* wordPtr1 = cont.getListPtr();
   while(wordPtr1) {
@@ -129,7 +123,6 @@ int main(int argc, char* argv[])
 
   if(!wordPtr1 && wordPtr2){
     //print out the files of the second word
-    cout << "we got here" << endl;
     listPrint(wordPtr2->getData().getListPtr());
   }else if(!wordPtr2 && wordPtr1) {
     //print out the files of the first word
@@ -172,8 +165,7 @@ int main(int argc, char* argv[])
 
   }
 
-  // YOU MAY ADD CODE HERE IF NEEDED TO
-  // CLEAR ANY DYNAMICALLY ALLOCATED SPACES
+  // clear dynamically allocated spaces
   while(unionFiles) {
     dnode<File>* tmp = unionFiles;
     unionFiles = unionFiles->getNext();
